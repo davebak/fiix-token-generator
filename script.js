@@ -9,7 +9,7 @@ async function createAuthToken() {
     // Create the HMAC signature
     const encoder = new TextEncoder();
     const keyData = encoder.encode(secret_key);
-    const msgData = `${domain_name}.macmms.com/api/?service=cmms&appKey=${api_key}&accessKey=${access_key}&signatureMethod=HmacSHA256&signatureVersion=1`;
+    const msgData = encoder.encode(`${domain_name}.macmms.com/api/?service=cmms&appKey=${api_key}&accessKey=${access_key}&signatureMethod=HmacSHA256&signatureVersion=1`);
 
     // Import the secret as a cryptographic key
     const key = await crypto.subtle.importKey(
